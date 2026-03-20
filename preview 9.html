@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+body {
+  margin:0;
+  font-family:sans-serif;
+  background:#0a0a0a;
+  color:white;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
+
+.noselect {
+  -webkit-user-select:none;
+  -ms-user-select:none;
+  user-select:none;
+}
+</style>
+</head>
+
+<body>
+
+<!-- SCREEN 1 -->
+<div id="screen1" style="text-align:center;">
+  <div class="noselect" style="font-size:28px;margin-bottom:20px;">
+    Open Link
+  </div>
+
+  <div class="noselect" style="font-size:18px;opacity:0.8;margin-bottom:25px;">
+    P.O.V: Hold the button
+  </div>
+
+  <div id="btn" class="noselect"
+    style="padding:20px 35px;background:gold;color:black;font-size:20px;border-radius:15px;">
+    Open Link
+  </div>
+</div>
+
+<!-- SCREEN 2 -->
+<div id="screen2" style="display:none;width:100%;height:100vh;background:white;color:black;">
+
+  <div style="padding:15px;background:black;color:gold;text-align:center;font-size:20px;">
+    Chrome
+  </div>
+
+  <div style="padding:20px;text-align:center;">
+    <input id="search" type="text" placeholder="Search..."
+      style="width:90%;padding:15px;border-radius:10px;border:1px solid #ccc;font-size:16px;">
+  </div>
+
+  <!-- Suggestion -->
+  <div id="suggestion" style="display:none;text-align:center;">
+    <div id="suggestionItem"
+      style="display:inline-block;margin-top:10px;padding:12px 18px;
+      background:#f1f1f1;border-radius:8px;cursor:pointer;">
+      https://thedumpsterguard.com/NFkwZjRHMGoyNDQ4OXc=
+    </div>
+  </div>
+
+</div>
+
+<script>
+let timer;
+
+const btn = document.getElementById("btn");
+
+btn.addEventListener("touchstart", startHold);
+btn.addEventListener("mousedown", startHold);
+
+btn.addEventListener("touchend", cancelHold);
+btn.addEventListener("mouseup", cancelHold);
+btn.addEventListener("mouseleave", cancelHold);
+
+function startHold() {
+  timer = setTimeout(() => {
+    document.getElementById("screen1").style.display = "none";
+    document.getElementById("screen2").style.display = "block";
+    document.body.style.background = "white";
+  }, 1000);
+}
+
+function cancelHold() {
+  clearTimeout(timer);
+}
+
+/* Search suggestion logic */
+const searchInput = document.getElementById("search");
+const suggestion = document.getElementById("suggestion");
+const suggestionItem = document.getElementById("suggestionItem");
+
+searchInput.addEventListener("input", () => {
+  const value = searchInput.value.trim().toLowerCase();
+
+  if (value === "hi") {
+    suggestion.style.display = "block";
+  } else {
+    suggestion.style.display = "none";
+  }
+});
+
+/* Click suggestion → redirect */
+suggestionItem.addEventListener("click", () => {
+  window.location.href = "https://thedumpsterguard.com/NFkwZjRHMGoyNDQ4OXc=";
+});
+</script>
+
+</body>
+</html>
